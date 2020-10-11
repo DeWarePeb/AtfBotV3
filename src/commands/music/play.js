@@ -6,11 +6,7 @@ const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 const scdl = require("soundcloud-downloader");
 
 module.exports = {
-  name: "play",
-  cooldown: 3,
-  aliases: ["p"],
-  description: "Plays audio from YouTube or Soundcloud",
-  async execute(message, args) {
+  run: async (client, message, args) => {
     const { channel } = message.member.voice;
 
     const serverQueue = message.client.queue.get(message.guild.id);
@@ -116,5 +112,7 @@ module.exports = {
       await channel.leave();
       return message.channel.send(`Could not join the channel: ${error}`).catch(console.error);
     }
-  }
-};
+  },
+  aliases: [],
+  description: 'music'
+}
