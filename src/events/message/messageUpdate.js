@@ -3,7 +3,7 @@ const discord = require("discord.js");
 module.exports = (client, oldMessage, newMessage) => {
     const logChannel = client.channels.cache.get('700265762174009384');
 
-    if (!oldMessage.guild.me) return;
+    if (!oldMessage.guild.bot) return;
     if (oldMessage.content === newMessage.content) {
         return;
     }

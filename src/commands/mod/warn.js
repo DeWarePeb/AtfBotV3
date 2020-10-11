@@ -1,62 +1,31 @@
 const discord = require("discord.js");
-const db = require("quick.db")
+const fs = require("fs");
 
 module.exports = {
     run: async (client, message, args) => {
-        if (!message.member.hasPermission("ADMINISTRATOR")) {
-            return message.channel.send("You should have admin perms to use this command!")
-        }
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You don't have premission to do that!");
 
-        const user = message.mentions.members.first()
+        let reason = args.slice(1).join(' ');
+        let warnChannel = message.guild.channels.cache.find(c => c.name == "strikes");
+        let user = message.mentions.users.first();
 
-        if (!user) {
-            return message.channel.send("Please Mention the person to who you want to warn - warn @mention <reaosn>")
-        }
+        if (message.mentions.users.size < 1) return message.reply('You must mention someone to warn them.');
 
-        if (message.mentions.users.first().bot) {
-            return message.channel.send("You can not warn bots")
-        }
+        if (reason.length < 1) return message.reply('You must have a reason for the warning.');
 
-        if (message.author.id === user.id) {
-            return message.channel.send("You can not warn yourself")
-        }
+        let dmsEmbed = new discord.MessageEmbed()
+            .setTitle("Warn")
+            .setColor("BLACK")
+            .setDescription(`You have been warned on \`${message.guild.name}\``)
+            .addField("Warned by", message.author.tag)
+            .addField("Reason", reason);
 
-        if (user.id === message.guild.owner.id) {
-            return message.channel.send("You jerk, how you can warn server owner -_-")
-        }
+        warnChannel.send(dmsEmbed);
+        user.send(dmsEmbed);
 
-        const reason = args.slice(1).join(" ")
+        message.delete();
 
-        if (!reason) {
-            return message.channel.send("Please provide reason to warn - warn @mention <reason>")
-        }
-
-        let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
-
-        if (warnings === 3) {
-            return message.channel.send(`${message.mentions.users.first().username} already reached his/her limit with 3 warnings`)
-        }
-
-        if (warnings === null) {
-            db.set(`warnings_${message.guild.id}_${user.id}`, 1)
-            user.send(`You have been warned in **${message.guild.name}** for ${reason}`)
-            let embed1 = new discord.MessageEmbed()
-                .setColor('BLACK')
-                .setDescription(`You warned **${message.mentions.users.first().username}** for ${reason}`)
-                .setTimestamp()
-            await message.channel.send(embed1)
-        } else if (warnings !== null) {
-            db.add(`warnings_${message.guild.id}_${user.id}`, 1)
-            user.send(`You have been warned in **${message.guild.name}** for ${reason}`)
-            let embed = new discord.MessageEmbed()
-                .setColor('BLACK')
-                .setDescription(`You warned **${message.mentions.users.first().username}** for ${reason}`)
-                .setTimestamp()
-            await message.channel.send(embed)
-        }
-
-
-
+        message.channel.send(`${user.tag} has been warned`)
     },
     aliases: [],
     description: 'Warn someone'

@@ -18,6 +18,7 @@ module.exports = {
 				`**❯ server-info:** Server info`,
 				`**❯ suggestion:** Suggest something`,
 				`**❯ user-info:** Give info info about a member`,
+				`**❯ rules:** Gives the 3 most importent rules`,
 				`\u200b`
 			])
 			.addField('Mod', [
@@ -33,7 +34,7 @@ module.exports = {
 				`**❯ warn:** Warn someone`,
 				`**❯ warnings:** See how many warnings someone has`,
 				`**❯ reset-warnings:** Reset someones warnings`,
-
+				`**❯ apps-done:** Auto completes apps stuff`,
 				`\u200b`
 			])
 			.addField('Misc', [

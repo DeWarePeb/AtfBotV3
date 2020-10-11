@@ -1,6 +1,9 @@
 {
-    "token":"NzMwMDk3OTMwMDc3NDcwNzUw.XwSirw.xnqbx7LqZrLscQJjnF_AHxAQQdA",
+    "token":"NzMwMDk3OTMwMDc3NDcwNzUw.XwSirw.nsyGXTQvQKKOBGG8MYEXGdm6hIg",
     "prefix":"/",
     "everyoneMention": false,
-    "hostedBy": true
+    "hostedBy": true,
+    "YOUTUBE_API_KEY": "AIzaSyC1JKk6nhriVK1lpPHutFLib3m1nlFwBec",
+    "MAX_PLAYLIST_SIZE": 10,
+    "PRUNING": false
 }

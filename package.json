@@ -10,12 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "ansi-colors": "^4.1.1",
     "beautify": "0.0.8",
     "discord-giveaways": "^4.2.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "ffmpeg-static": "^4.2.7",
+    "genius-lyrics": "^3.0.0",
     "http": "0.0.1-security",
+    "lyrics-finder": "^21.4.0",
     "moment": "^2.27.0",
     "mongoose": "^5.9.28",
     "ms": "^2.1.2",
@@ -24,11 +28,17 @@
     "num-parse": "^1.0.1",
     "os": "^0.1.1",
     "pretty": "^2.0.0",
-    "quick.db": "^7.1.1",
+    "quick.db": "^7.1.2",
+    "scdl": "^0.1.6",
+    "simple-youtube-api": "^5.2.1",
     "snekfetch": "^4.0.4",
+    "soundcloud-downloader": "^0.1.6",
+    "string-progressbar": "^1.0.1",
     "table": "^5.4.6",
     "urban": "^0.3.2",
     "weather-js": "^2.0.0",
-    "weather.js": "^0.1.0"
+    "weather.js": "^0.1.0",
+    "ytdl-core": "^3.3.0",
+    "ytdl-core-discord": "^1.2.1"
   }
 }
