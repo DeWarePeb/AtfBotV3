@@ -22,7 +22,6 @@ client.giveawaysManager.on("giveawayReactionRemoved", (giveaway, member, reactio
 });
 //giveaway
 (async () => {
-    //client.login(process.env.token);
     client.login(config.token);
     client.commands = new Map();
     client.cachedMessageReactions = new Map();
