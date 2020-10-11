@@ -10,6 +10,7 @@ module.exports = {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You are not allowed to run that command!");
 
         let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[0]);
+        let warnChannel = message.guild.channels.cache.find(c => c.name == "strikes");
         if (!wUser) return message.channel.send("Please mention a valid member in this server.");
         if (wUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Unable to warn staff members.")
 
@@ -34,7 +35,9 @@ module.exports = {
             .setColor("#7289DA");
 
         message.channel.send(warnembed);
-},
+        warnChannel.send(warnembed);
+        wUser.send(warnembed);
+    },
     aliases: [],
-        description: 'Warn someone'
+    description: 'Warn someone'
 }
