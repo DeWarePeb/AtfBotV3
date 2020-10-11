@@ -1,10 +1,10 @@
 const ytdlDiscord = require("ytdl-core-discord");
 const scdl = require("soundcloud-downloader");
-const { canModifyQueue } = require("../util/EvobotUtil");
+const { canModifyQueue } = require("../../utils/canMod");
 
 module.exports = {
-  async play(song, message) {
-    const { PRUNING, SOUNDCLOUD_CLIENT_ID } = require("../config.json");
+  run: async (client, message, args) => {
+    const { PRUNING, SOUNDCLOUD_CLIENT_ID } = require("../../configs/config.json");
     const queue = message.client.queue.get(message.guild.id);
 
     if (!song) {
@@ -186,5 +186,7 @@ module.exports = {
         playingMessage.delete({ timeout: 3000 }).catch(console.error);
       }
     });
-  }
-};
+  },
+  aliases: [],
+  description: 'Music-1'
+}

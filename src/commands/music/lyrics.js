@@ -2,30 +2,25 @@ const { MessageEmbed } = require("discord.js");
 const lyricsFinder = require("lyrics-finder");
 
 module.exports = {
-  name: "lyrics",
-  aliases: ["ly"],
-  description: "Get lyrics for the currently playing song",
-  async execute(message) {
-    const queue = message.client.queue.get(message.guild.id);
-    if (!queue) return message.channel.send("There is nothing playing.").catch(console.error);
-
-    let lyrics = null;
-
-    try {
-      lyrics = await lyricsFinder(queue.songs[0].title, "");
-      if (!lyrics) lyrics = `No lyrics found for ${queue.songs[0].title}.`;
-    } catch (error) {
-      lyrics = `No lyrics found for ${queue.songs[0].title}.`;
+  run: async (client, message, args) => {
+    if (message.mentions.users.first()) {
+      user = message.mentions.users.first();
+    } else if (args[0]) {
+      user = message.guild.members.cache.get(args[0]).user;
+    } else {
+      user = message.author;
     }
 
-    let lyricsEmbed = new MessageEmbed()
-      .setTitle("Lyrics")
-      .setDescription(lyrics)
-      .setColor("#F8AA2A")
-      .setTimestamp();
+    let avatar = user.displayAvatarURL({ size: 4096, dynamic: true })
 
-    if (lyricsEmbed.description.length >= 2048)
-      lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
-    return message.channel.send(lyricsEmbed).catch(console.error);
-  }
-};
+    const embed = new discord.MessageEmbed()
+      .setTitle(`${user.tag} avatar`)
+      .setDescription(`[Avatar URL of **${user.tag}**](${avatar})`)
+      .setColor(0x1d1d1d)
+      .setImage(avatar)
+
+    return message.channel.send(embed);
+  },
+  aliases: [],
+  description: 'A test command'
+}
