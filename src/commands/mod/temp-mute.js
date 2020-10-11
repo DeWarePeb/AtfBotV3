@@ -17,8 +17,7 @@ module.exports = {
 
         if (mutePerson.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
 
-        var muteRole = message.guild.roles.cache.find(x => x.name === "muted" || x.name === "Muted")
-        //var muteRole = message.guild.roles.cache.get('');
+        var muteRole = message.guild.roles.cache.find(x => x.name === "muted" || x.name === "Muted");
         if (!muteRole) return message.channel.send("no muted role found");
 
         var muteTime = args[2];
