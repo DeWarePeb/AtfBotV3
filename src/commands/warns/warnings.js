@@ -13,7 +13,7 @@ module.exports = {
             .setTitle("Warnings")
             .addField("User", wUser)
             .addField("Total Warnings", warns[wUser.id].warns)
-            .setColor("#7289DA");
+            .setColor("BLACK");
 
         message.channel.send(warnembed); 
     },
