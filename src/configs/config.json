@@ -5,5 +5,6 @@
     "hostedBy": true,
     "YOUTUBE_API_KEY": "AIzaSyC1JKk6nhriVK1lpPHutFLib3m1nlFwBec",
     "MAX_PLAYLIST_SIZE": 10,
-    "PRUNING": false
+    "PRUNING": false,
+    "google": "AIzaSyBXu5ryBO9daWs-8gLyqzMqte3hXsD01O4"
 }
