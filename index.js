@@ -2,6 +2,7 @@ const config = require('./src/configs/config.json');
 const discord = require('discord.js');
 const client = new discord.Client({ partials: ['MESSAGE', 'REACTION'] });
 const { registerCommands, registerEvents } = require('./src/utils/registry');
+
 //giveaway
 const { GiveawaysManager } = require('discord-giveaways');
 client.giveawaysManager = new GiveawaysManager(client, {
