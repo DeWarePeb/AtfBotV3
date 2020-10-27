@@ -7,7 +7,7 @@ const prompts = [
     'What is your PSN name?',
     'What is your Social club?',
     'What level are you on gta?',
-    'Why do you want to join ATFO?'
+    'Why do you want to join ATFO? (Max 30 words)'
 ]
 
 module.exports = {
@@ -35,10 +35,20 @@ module.exports = {
             const reactions = await msg.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] });
             const choice = reactions.get('👍') || reactions.get('👎');
             if (choice.emoji.name === '👍') {
-                message.channel.send('yes');
+                const giveawayEmbed = new MessageEmbed()
+                    .setTitle('Application has been send!')
+                    .addField('Age', response.age, true)
+                    .addField('Psn', response.psn, true)
+                    .addField('Social Club', response.sc, true)
+                    .addField('Level', response.level, true)
+                    .addField('Reason', response.reason, true)
+                    .setFooter(`Sent by ${message.author.tag}`)
+                    .setTimestamp()
+                const giveawayMsg = await message.channel.send(giveawayEmbed);
+                await giveawayMsg.react('🎉');
             }
             if (choice.emoji.name === '👎') {
-                message.channel.send('no');
+                message.channel.send('Cancelled Application');
             }
         } catch (err) {
             console.log(err)

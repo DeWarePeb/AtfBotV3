@@ -1,13 +1,15 @@
 const { createStream } = require('table');
 const tableConfig = require('../../utils/tableconfig');
 const { commandStatus, eventStatus } = require('../../utils/registry');
+const { prefix } = require('../../configs/config.json');
+const { version } = require('../../../package.json');
 
 module.exports = async (client) => {
     console.log(`${client.user.tag} has logged in.`);
     await loadTable(commandStatus, 50);
     console.log("\n");
     await loadTable(eventStatus, 50);
-    client.user.setActivity("ATFO (V3)", { type: "WATCHING" });
+    client.user.setActivity(`ATF Bot V${version} | prefix =  ${prefix} `, { type: "WATCHING" });
 }
 function loadTable(arr, interval) {
     let fn, i = 0, stream = createStream(tableConfig);
